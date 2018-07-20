@@ -17,6 +17,16 @@ class CreateAllTables extends Migration
       // 2. Роли
       // 3. Права пользователейS
       Schema::disableForeignKeyConstraints();
+      Schema::dropIfExists('sessions');
+      Schema::create('sessions', function (Blueprint $table) {
+          //$table->increments('id');
+          $table->string('id', 255)->unique();
+          $table->unsignedInteger('user_id')->nullable();
+          $table->string('ip_address', 45)->nullable();
+          $table->text('user_agent')->nullable();
+          $table->text('payload');
+          $table->integer('last_activity');
+      });
       Schema::dropIfExists('roles');
       Schema::create('roles', function (Blueprint $table) {
           $table->increments('id');

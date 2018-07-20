@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "laravel-shop/laravel-shop",
+    "description": "A store made with laravel.",
+    "keywords": ["shop", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -16,10 +16,12 @@
     },
     "autoload": {
         "classmap": [
-            "database"
+            "database",
+            "Application/Modules"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "Application/",
+            "Modules\\": "Modules/"
         }
     },
     "autoload-dev": {
