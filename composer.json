@@ -22,10 +22,10 @@
     "autoload": {
         "classmap": [
             "database",
-            "Application/Modules"
+            "app/Modules"
         ],
         "psr-4": {
-            "App\\": "Application/",
+            "App\\": "app/",
             "Modules\\": "Modules/"
         }
     },

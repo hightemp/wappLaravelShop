@@ -11,8 +11,9 @@
 |
 */
 
-$sAdminPath = config('app.adminPath');
+$sAdminDir = config('app.adminDir');
 
+/*
 Route::group([
   'prefix' => "{language}/$sAdminPath",
   'middleware' => ['web', 'auth']
@@ -56,4 +57,14 @@ Route::get('/', [
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+*/
+
+Route::get('/', 'HomeController@fnShow');
+
+Route::any(
+  '{all}', 
+  function()
+  {
+    return view('error');
+  }
+)->where('all', '.*');

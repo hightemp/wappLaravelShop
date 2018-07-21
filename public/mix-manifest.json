@@ -2,9 +2,15 @@
     "/js/scripts_main.js": "/js/scripts_main.js",
     "/css/styles_main.css": "/css/styles_main.css",
     "/css/Default/styles.css": "/css/Default/styles.css",
+    "/css/Admin/styles_main.css": "/css/Admin/styles_main.css",
+    "/css/Admin/styles_0.css": "/css/Admin/styles_0.css",
     "/css/styles_0.css": "/css/styles_0.css",
     "/js/scripts_1_0.js": "/js/scripts_1_0.js",
+    "/js/Admin/scripts_main.js": "/js/Admin/scripts_main.js",
     "/js/scripts_2_0.js": "/js/scripts_2_0.js",
+    "/js/Admin/scripts_0.js": "/js/Admin/scripts_0.js",
     "/css/styles.css": "/css/styles.css",
-    "/js/scripts.js": "/js/scripts.js"
+    "/css/Admin/styles.css": "/css/Admin/styles.css",
+    "/js/scripts.js": "/js/scripts.js",
+    "/js/Admin/scripts.js": "/js/Admin/scripts.js"
 }
