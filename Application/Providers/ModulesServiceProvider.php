@@ -8,19 +8,22 @@ class ModulesServiceProvider extends ServiceProvider
 {
   public function boot()
   {
-    $aModulesPaths = glob(app_path()."/Modules/*", GLOB_ONLYDIR);
+    $aModulesPaths = glob(app_path().DIRECTORY_SEPARATOR."Modules".DIRECTORY_SEPARATOR."*", GLOB_ONLYDIR);
     
     foreach($aModulesPaths as $sModulePath) {
       $sModuleName = dirname($sModulePath);
 
-      if (file_exists($sModulePath."/Routes.php"))
-        $this->loadRoutesFrom($sModulePath."/Routes.php");
+      $sRoutesFilePath = $sModulePath.DIRECTORY_SEPARATOR."Routes.php";
+      if (file_exists($sRoutesFilePath))
+        $this->loadRoutesFrom($sRoutesFilePath);
 
-      if (is_dir($sModulePath."/Views"))
-        $this->loadViewsFrom($sModulePath."/Views", $sModuleName);
+      $sViewsPath = $sModulePath.DIRECTORY_SEPARATOR."Views";
+      if (is_dir($sViewsPath))
+        $this->loadViewsFrom($sViewsPath, $sModuleName);
 
-      if (file_exists($sModulePath."/Migrations.php"))
-        $this->loadMigrationsFrom($sModulePath."/Migrations.php");
+      $sMigrationsFilePath = $sModulePath.DIRECTORY_SEPARATOR."Migrations.php";
+      if (file_exists($sMigrationsFilePath))
+        $this->loadMigrationsFrom($sMigrationsFilePath);
     }
   }
 

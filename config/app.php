@@ -2,7 +2,7 @@
 
 return [
 
-    'adminPath' => 'admin',
+    'adminDir' => 'admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -14,7 +14,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Site'),
+    'name' => env('APP_NAME', 'Laravel shop'),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ModulesServiceProvider::class,
 
     ],
 
