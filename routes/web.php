@@ -59,12 +59,23 @@ Auth::routes();
 
 */
 
-Route::get('/', 'HomeController@fnShow');
+Route::group(
+  [
+    'prefix' => $sAdminDir,
+    'middleware' => [/*'web', 'auth'*/]
+  ], 
+  function()
+  {
+    Route::get("/", 'Backend\DashboardController@fnShow');
+  }
+);
+
+Route::get('/', 'Frontend\HomeController@fnShow');
 
 Route::any(
   '{all}', 
   function()
   {
-    return view('error');
+    return theme_view('error');
   }
 )->where('all', '.*');
