@@ -1,6 +1,6 @@
 {
     "name": "hightemp/wappLaravelShop",
-    "description": "A store made with laravel.",
+    "description": "CMS for e-commerce based on laravel framework",
     "keywords": ["shop", "laravel"],
     "license": "MIT",
     "type": "project",
