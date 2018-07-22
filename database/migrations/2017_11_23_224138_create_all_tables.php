@@ -26,6 +26,18 @@ class CreateAllTables extends Migration
               $oTable->engine = 'InnoDB';
           }
       );
+      Schema::create(
+          'Modules', 
+          function (Blueprint $oTable) 
+          {
+              $oTable->increments('iModuleID');
+              $oTable->string('sName', 255);
+              $oTable->boolean('bStatus');
+              $oTable->charset = 'utf8';
+              $oTable->collation = 'utf8_unicode_ci';
+              $oTable->engine = 'InnoDB';
+          }
+      );
 
       /*
       Schema::disableForeignKeyConstraints();

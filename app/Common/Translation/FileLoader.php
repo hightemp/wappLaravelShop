@@ -42,6 +42,17 @@ class FileLoader implements LoaderInterface
     }
 
     /**
+     * Adds new path.
+     *
+     * @param  string  $sPath
+     * @return void
+     */
+    public function addPath($sPath)
+    {
+        $this->_aPaths[] = $sPath;
+    }
+
+    /**
      * Load the messages for the given locale.
      *
      * @param  string  $locale
@@ -73,7 +84,13 @@ class FileLoader implements LoaderInterface
             return $aResult;
         }
 
-        return $this->loadNamespaced($sLocale, $sGroup, $sNamespace);
+        if ($sGroup == '*') {
+            $aResult = $this->loadPathAll($this->_aHints[$sNamespace], $sLocale);
+        } else {
+            $aResult = $this->loadNamespaced($sLocale, $sGroup, $sNamespace);
+        }
+
+        return $aResult;
     }
 
     /**

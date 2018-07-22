@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class HelpersServiceProvider extends ServiceProvider
 {
-  public function boot()
+  public function register()
   {
     $aHelpersPaths = glob(app_path().DIRECTORY_SEPARATOR."Helpers".DIRECTORY_SEPARATOR."**".DIRECTORY_SEPARATOR."*.php");
 
