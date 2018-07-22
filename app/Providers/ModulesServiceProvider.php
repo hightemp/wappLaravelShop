@@ -21,6 +21,10 @@ class ModulesServiceProvider extends ServiceProvider
       if (is_dir($sViewsPath))
         $this->loadViewsFrom($sViewsPath, $sModuleName);
 
+      //$sLanguagePath = $sModulePath.DIRECTORY_SEPARATOR."Language";
+      //if (is_dir($sLanguagePath))
+      //  $this->loadTranslationsFrom($sLanguagePath);
+
       $sMigrationsFilePath = $sModulePath.DIRECTORY_SEPARATOR."Migrations.php";
       if (file_exists($sMigrationsFilePath))
         $this->loadMigrationsFrom($sMigrationsFilePath);

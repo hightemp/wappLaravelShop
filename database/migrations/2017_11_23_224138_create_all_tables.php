@@ -13,9 +13,21 @@ class CreateAllTables extends Migration
      */
     public function up()
     {
-      // 1. Товары с несколькими харатеристиками
-      // 2. Роли
-      // 3. Права пользователейS
+      Schema::create(
+          'Settings', 
+          function (Blueprint $oTable) 
+          {
+              $oTable->increments('iSettingID');
+              $oTable->string('sName', 255);
+              $oTable->string('sType', 20);
+              $oTable->string('sValue', 255);
+              $oTable->charset = 'utf8';
+              $oTable->collation = 'utf8_unicode_ci';
+              $oTable->engine = 'InnoDB';
+          }
+      );
+
+      /*
       Schema::disableForeignKeyConstraints();
       Schema::dropIfExists('sessions');
       Schema::create('sessions', function (Blueprint $table) {
@@ -149,27 +161,6 @@ class CreateAllTables extends Migration
           $table->string('value', 255);
       });
       Schema::enableForeignKeyConstraints();
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-      Schema::disableForeignKeyConstraints();
-      Schema::dropIfExists('users');
-      Schema::dropIfExists('password_resets');
-      Schema::dropIfExists('pages');
-      Schema::dropIfExists('posts');
-      Schema::dropIfExists('iblocks');
-      Schema::dropIfExists('fields');
-      Schema::dropIfExists('fields_values');
-      Schema::dropIfExists('roles');
-      Schema::dropIfExists('roles_users');
-      Schema::dropIfExists('languages');
-      Schema::dropIfExists('settings');
-      Schema::enableForeignKeyConstraints();
+      */
     }
 }

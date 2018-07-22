@@ -11,7 +11,7 @@
 |
 */
 
-$sAdminDir = config('app.adminDir');
+$sAdminDir = config('app.sAdminDir');
 
 /*
 Route::group([
