@@ -21,12 +21,10 @@
     },
     "autoload": {
         "classmap": [
-            "database",
-            "app/Modules"
+            "database"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "Modules\\": "Modules/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
