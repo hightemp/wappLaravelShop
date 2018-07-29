@@ -14,29 +14,45 @@ class CreateAllTables extends Migration
     public function up()
     {
       Schema::create(
-          'Settings', 
-          function (Blueprint $oTable) 
-          {
-              $oTable->increments('iSettingID');
-              $oTable->string('sName', 255);
-              $oTable->string('sType', 20);
-              $oTable->string('sValue', 255);
-              $oTable->charset = 'utf8';
-              $oTable->collation = 'utf8_unicode_ci';
-              $oTable->engine = 'InnoDB';
-          }
+        'Settings', 
+        function (Blueprint $oTable) 
+        {
+          $oTable->increments('iSettingID');
+          $oTable->string('sName', 255);
+          $oTable->string('sType', 20);
+          $oTable->string('sValue', 255);
+          $oTable->charset = 'utf8';
+          $oTable->collation = 'utf8_unicode_ci';
+          $oTable->engine = 'InnoDB';
+        }
       );
       Schema::create(
-          'Modules', 
-          function (Blueprint $oTable) 
-          {
-              $oTable->increments('iModuleID');
-              $oTable->string('sName', 255);
-              $oTable->boolean('bStatus');
-              $oTable->charset = 'utf8';
-              $oTable->collation = 'utf8_unicode_ci';
-              $oTable->engine = 'InnoDB';
-          }
+        'Modules', 
+        function (Blueprint $oTable) 
+        {
+          $oTable->increments('iModuleID');
+          $oTable->string('sName', 255);
+          $oTable->boolean('bStatus');
+          $oTable->charset = 'utf8';
+          $oTable->collation = 'utf8_unicode_ci';
+          $oTable->engine = 'InnoDB';
+        }
+      );
+      Schema::create(
+        'Themes', 
+        function (Blueprint $oTable) 
+        {
+          $oTable->increments('iThemeID');
+          $oTable
+              ->integer('iParentThemeID')
+              ->nullable(false)
+              ->default(0);
+          $oTable->string('sName', 255);
+          $oTable->boolean('bStatus');
+          $oTable->charset = 'utf8';
+          $oTable->collation = 'utf8_unicode_ci';
+          $oTable->engine = 'InnoDB';
+        }
       );
 
       /*

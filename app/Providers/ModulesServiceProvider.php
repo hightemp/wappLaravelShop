@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Models\Module;
+use App\Managers\ModulesManager;
 use App\Common\Installation\Installator;
 
 class ModulesServiceProvider extends ServiceProvider
@@ -11,15 +11,17 @@ class ModulesServiceProvider extends ServiceProvider
 
   public function boot()
   {
-    if (Installator::fnIsInstalled()) {
-      $aModules = Module::fnGetAll();
+    if (!Installator::fnIsInstalled()) {
+      return;
+    }
+    
+    $aModules = ModulesManager::fnGetAll();
 
-      foreach($aModules as $oModule) {
-        $oModule->fnLoadRoutes();
-        $oModule->fnLoadViews();
-        $oModule->fnLoadTranslations();
-        $oModule->fnLoadMigrations();
-      }
+    foreach($aModules as $oModule) {
+      $oModule->fnLoadRoutes();
+      $oModule->fnLoadViews();
+      $oModule->fnLoadTranslations();
+      $oModule->fnLoadMigrations();
     }
   }
 

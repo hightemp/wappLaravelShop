@@ -8,6 +8,6 @@ class DashboardController extends BackendController
 {
     public function fnShow()
     {
-        return admin_view('dashboard');
+        return fnAdminView('dashboard');
     }
 }

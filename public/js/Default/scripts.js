@@ -1,0 +1,1 @@
+console.log('Default theme :: before bootstrap ');console.log("Default theme :: bootstrap");console.log('Default theme');console.log('Test module :: Frontend :: Default')

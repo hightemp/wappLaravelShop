@@ -8,7 +8,7 @@ class BackendController extends BaseController
 {
 	function callAction($sMethod, $aParameters) 
 	{
-		return admin_view(
+		return fnAdminView(
 			"layout", 
 			[
 				"sTitle" => "ADMIN",

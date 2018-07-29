@@ -43,9 +43,24 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($oRequest, Exception $oException)
     {
-        return parent::render($request, $exception);
+      $iStatus = 500;
+      $aHeaders = [];
+      
+      if (!config('app.debug')) {
+        return fnResponseThemeView(
+          "error", 
+          [
+              'oException' => $oException,
+              'iStatus' => $iStatus
+          ], 
+          $iStatus, 
+          $aHeaders
+        );
+      }
+      
+      return parent::render($oRequest, $oException);
     }
 
     /**

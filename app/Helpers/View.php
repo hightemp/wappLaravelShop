@@ -1,41 +1,43 @@
 <?php
 
-function admin_view($sTemplateName)
+function fnAdminView(...$aArguments)
 {
-	$aArguments = func_get_args();
 	$aArguments[0] = "Backend." . $aArguments[0];
 	
-	return call_user_func_array("view", $aArguments);
+	return view(...$aArguments);
 }
 
-function admin_css_mix($sFileName)
+function fnAdminCSSMix(...$aArguments)
 {
-	$aArguments = func_get_args();
 	$aArguments[0] = "/css/Admin/" . $aArguments[0];
 	
-	return call_user_func_array("mix", $aArguments);
+	return mix(...$aArguments);
 }
 
-function admin_js_mix($sFileName)
+function fnAdminJSMix(...$aArguments)
 {
-	$aArguments = func_get_args();
 	$aArguments[0] = "/js/Admin/" . $aArguments[0];
 	
-	return call_user_func_array("mix", $aArguments);
+	return mix(...$aArguments);
 }
 
-function theme_view($sTemplateName)
+function fnThemeView(...$aArguments)
 {
-	$aArguments = func_get_args();
 	$aArguments[0] = "Frontend.Default." . $aArguments[0];
 	
-	return call_user_func_array("view", $aArguments);
+	return view(...$aArguments);
 }
 
-function theme_css_mix($sFileName)
+function fnResponseThemeView(...$aArguments)
 {
-	$aArguments = func_get_args();
+	$aArguments[0] = "Frontend.Default." . $aArguments[0];
+	
+	return response()->view(...$aArguments);
+}
+
+function fnThemeCSSMix(...$aArguments)
+{
 	$aArguments[0] = "/css/Default/" . $aArguments[0];
 	
-	return call_user_func_array("mix", $aArguments);
+	return mix(...$aArguments);
 }

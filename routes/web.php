@@ -76,6 +76,6 @@ Route::any(
   '{all}', 
   function()
   {
-    return theme_view('error');
+    return fnThemeView('error');
   }
 )->where('all', '.*');

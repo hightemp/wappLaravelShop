@@ -12,26 +12,6 @@ class Module extends Model
 
 	protected $fillable = ['sName', 'bStatus'];
 
-	public static function fnGetAll()
-	{
-		$aResult = [];
-
-		$aModulesPaths = glob(fnAppPath("Modules", "*"), GLOB_ONLYDIR);
-
-		foreach($aModulesPaths as $sModulePath) {
-			$sModuleName = basename($sModulePath);
-
-			$aResult[] = self::firstOrNew([ 'sName' => $sModuleName ]);
-		}
-
-		return $aResult;
-	}
-
-	public static function fnGetInstalled() 
-	{
-		return self::where('bStatus', 1)->get();
-	}
-
 	public function fnLoadRoutes()
 	{
 		$sRoutesFilePath = fnAppPath("Modules", $this->sName, "Routes.php");
@@ -70,7 +50,7 @@ class Module extends Model
 		app()
 			->afterResolving(
 				'migrator', 
-				function ($oMigrator) 
+				function ($oMigrator) use ($sMigrationsPath)
 				{
 					$oMigrator->path($sMigrationsPath);
 				}

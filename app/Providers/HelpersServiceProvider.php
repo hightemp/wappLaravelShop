@@ -8,13 +8,13 @@ class HelpersServiceProvider extends ServiceProvider
 {
   public function register()
   {
-    $aHelpersPaths = glob(app_path().DIRECTORY_SEPARATOR."Helpers".DIRECTORY_SEPARATOR."**".DIRECTORY_SEPARATOR."*.php");
+    $aHelpersPaths = fnAppPathGlob("Helpers", "**", "*.php");
 
     foreach($aHelpersPaths as $aHelperPath) {
       require_once $aHelperPath;
     }
 
-    $aHelpersPaths = glob(app_path().DIRECTORY_SEPARATOR."Helpers".DIRECTORY_SEPARATOR."*.php");
+    $aHelpersPaths = fnAppPathGlob("Helpers", "*.php");
 
     foreach($aHelpersPaths as $aHelperPath) {
       require_once $aHelperPath;

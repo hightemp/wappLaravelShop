@@ -8,7 +8,7 @@ class FrontendController extends BaseController
 {
 	function callAction($sMethod, $aParameters) 
 	{
-		return theme_view(
+		return fnThemeView(
 			"layout", 
 			[
 				"sTitle" => "TEST",

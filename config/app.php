@@ -40,7 +40,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -139,8 +139,6 @@ return [
 
     'providers' => [
 
-        App\Providers\HelpersServiceProvider::class,
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -175,6 +173,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\HelpersServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -182,7 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TranslationsServiceProvider::class,
         App\Providers\ModulesServiceProvider::class,
-
+        App\Providers\PreprocessorServiceProvider::class,
     ],
 
     /*
