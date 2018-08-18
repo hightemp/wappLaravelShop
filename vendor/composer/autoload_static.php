@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
+class ComposerStaticInitedb3b07a26ff231b15f38dc3ce71f201
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -305,8 +305,11 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Managers\\ModulesManager' => __DIR__ . '/../..' . '/app/Managers/ModulesManager.php',
+        'App\\Managers\\ThemesManager' => __DIR__ . '/../..' . '/app/Managers/ThemesManager.php',
         'App\\Models\\Module' => __DIR__ . '/../..' . '/app/Models/Module.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
+        'App\\Models\\Theme' => __DIR__ . '/../..' . '/app/Models/Theme.php',
         'App\\Page' => __DIR__ . '/../..' . '/app/Models/Page.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -314,6 +317,7 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\HelpersServiceProvider' => __DIR__ . '/../..' . '/app/Providers/HelpersServiceProvider.php',
         'App\\Providers\\ModulesServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ModulesServiceProvider.php',
+        'App\\Providers\\PreprocessorServiceProvider' => __DIR__ . '/../..' . '/app/Providers/PreprocessorServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\TranslationsServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TranslationsServiceProvider.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
@@ -1584,7 +1588,6 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
-        'LanguagesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/LanguagesTableSeeder.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
@@ -2206,7 +2209,6 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
-        'PagesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PagesTableSeeder.php',
         'Parsedown' => __DIR__ . '/..' . '/erusev/parsedown/Parsedown.php',
         'PhpParser\\Autoloader' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Autoloader.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',
@@ -2763,7 +2765,6 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'SettingsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SettingsTableSeeder.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\Command\\Command' => __DIR__ . '/..' . '/symfony/console/Command/Command.php',
         'Symfony\\Component\\Console\\Command\\HelpCommand' => __DIR__ . '/..' . '/symfony/console/Command/HelpCommand.php',
@@ -3311,7 +3312,6 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
-        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
@@ -3387,10 +3387,10 @@ class ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2278e98dd475b63a2bb9e3f522b506fa::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitedb3b07a26ff231b15f38dc3ce71f201::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitedb3b07a26ff231b15f38dc3ce71f201::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitedb3b07a26ff231b15f38dc3ce71f201::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitedb3b07a26ff231b15f38dc3ce71f201::$classMap;
 
         }, null, ClassLoader::class);
     }

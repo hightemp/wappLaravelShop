@@ -61,6 +61,7 @@ class FileStore implements Store
     public function put($key, $value, $minutes)
     {
         $this->ensureCacheDirectoryExists($path = $this->path($key));
+
         $this->files->put(
             $path, $this->expiration($minutes).serialize($value), true
         );
