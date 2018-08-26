@@ -13,3 +13,4 @@ yarn-error.log
 installed
 /nbproject
 /vendor/**/.git
+/config/local.json

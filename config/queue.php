@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_DRIVER', 'sync'),
+    'default' => fnLocalConfigGet('sQueueDriver', 'sync'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'table' => 'jobs',
+            'table' => 'Jobs',
             'queue' => 'default',
             'retry_after' => 90,
         ],
@@ -78,8 +78,8 @@ return [
     */
 
     'failed' => [
-        'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'failed_jobs',
+        'database' => fnLocalConfigGet('sDatabaseDriver', 'mysql'),
+        'table' => 'FailedJobs',
     ],
 
 ];

@@ -15,24 +15,24 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => fnLocalConfigGet('sMailgunDomain'),
+        'secret' => fnLocalConfigGet('sMailgunSecret'),
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
-        'secret' => env('SES_SECRET'),
+        'key' => fnLocalConfigGet('sSesKey'),
+        'secret' => fnLocalConfigGet('sSesSecret'),
         'region' => 'us-east-1',
     ],
 
     'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+        'secret' => fnLocalConfigGet('sSparkpostSecret'),
     ],
 
     'stripe' => [
         'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
-        'secret' => env('STRIPE_SECRET'),
+        'key' => fnLocalConfigGet('sStripeKey'),
+        'secret' => fnLocalConfigGet('sStripeSecret'),
     ],
 
 ];

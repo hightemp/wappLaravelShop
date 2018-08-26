@@ -2,7 +2,9 @@
 
 return [
 
-    'sAdminDir' => 'admin',
+    'sAdminDir' => fnLocalConfigGet('sAdminDir', 'admin'),
+
+    'aLanguages' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -14,7 +16,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel shop'),
+    'name' => 'Laravel shop',
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => fnLocalConfigGet('sAppEnv', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +42,7 @@ return [
     |
     */
 
-    'debug' => false,
+    'debug' => fnLocalConfigGet('bDebug', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -53,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +81,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => fnLocalConfigGet('sLanguage', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -92,7 +94,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => fnLocalConfigGet('sLanguage', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -105,7 +107,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => fnLocalConfigGet('sAppKey', 'base64:HRDEm7GNlUEPDt291r52IB8rGvJp3SOmKbYhwVHF87c='),
 
     'cipher' => 'AES-256-CBC',
 
@@ -122,9 +124,9 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => fnLocalConfigGet('sAppLog', 'single'),
 
-    'log_level' => env('APP_LOG_LEVEL', 'debug'),
+    'log_level' => fnLocalConfigGet('sAppLogLevel', 'debug'),
 
     /*
     |--------------------------------------------------------------------------

@@ -14,6 +14,8 @@ class ModulesServiceProvider extends ServiceProvider
     if (!Installator::fnIsInstalled()) {
       return;
     }
+
+    return;
     
     $aModules = ModulesManager::fnGetAll();
 

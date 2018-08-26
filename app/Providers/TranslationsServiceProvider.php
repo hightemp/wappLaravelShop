@@ -40,6 +40,13 @@ class TranslationsServiceProvider extends ServiceProvider
     });
   }
 
+  public function boot()
+  {
+    $oTranslationLoader = app()->make('translation.loader');
+
+    config([ 'app.aLanguages' => $oTranslationLoader->fnGetLanguages() ]);
+  }
+
   public function provides()
   {
     return ['translator', 'translation.loader'];

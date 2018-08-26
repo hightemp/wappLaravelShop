@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('CACHE_DRIVER', 'file'),
+    'default' => fnLocalConfigGet('sCacheDriver', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'table' => 'cache',
+            'table' => 'Cache',
             'connection' => null,
         ],
 
@@ -51,18 +51,18 @@ return [
 
         'memcached' => [
             'driver' => 'memcached',
-            'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
+            'persistent_id' => fnLocalConfigGet('sMemcachedPersistentID'),
             'sasl' => [
-                env('MEMCACHED_USERNAME'),
-                env('MEMCACHED_PASSWORD'),
+                fnLocalConfigGet('sMemcachedUsername'),
+                fnLocalConfigGet('sMemcachedPassword'),
             ],
             'options' => [
                 // Memcached::OPT_CONNECT_TIMEOUT  => 2000,
             ],
             'servers' => [
                 [
-                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port' => env('MEMCACHED_PORT', 11211),
+                    'host' => fnLocalConfigGet('sMemcachedHost', '127.0.0.1'),
+                    'port' => fnLocalConfigGet('sMemcachedPort', 11211),
                     'weight' => 100,
                 ],
             ],

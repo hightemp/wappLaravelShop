@@ -15,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-      if (!is_null(request()->debug)) {
-        Config::set('app.debug', true);
-      }
-      
-      if (!is_null(request()->cc)) {
+      if (!is_null(request()->cc) && Config::get('app.debug')) {
         Artisan::call('cache:clear');
       }
       /*

@@ -6,6 +6,7 @@ use App;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,9 +48,13 @@ class Handler extends ExceptionHandler
     {
       $iStatus = 500;
       $aHeaders = [];
-      
-      if (!config('app.debug')) {
-        return fnResponseThemeView(
+
+      if (!config('app.debug') || $oException instanceof NotFoundHttpException) {
+        if ($oException instanceof NotFoundHttpException) {
+          $iStatus = 404;
+        }
+
+        return \fnResponseThemeView(
           "error", 
           [
               'oException' => $oException,

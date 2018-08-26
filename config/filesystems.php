@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => fnLocalConfigGet('sFileSystemDriver', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => fnLocalConfigGet('sFileSystemCloud', 's3'),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,16 +51,16 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => '/storage',
             'visibility' => 'public',
         ],
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_KEY'),
-            'secret' => env('AWS_SECRET'),
-            'region' => env('AWS_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+            'key' => fnLocalConfigGet('sAwsKey'),
+            'secret' => fnLocalConfigGet('sAwsSecret'),
+            'region' => fnLocalConfigGet('sAwsRegion'),
+            'bucket' => fnLocalConfigGet('sAwsBucket'),
         ],
 
     ],

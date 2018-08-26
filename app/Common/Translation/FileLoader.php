@@ -47,9 +47,35 @@ class FileLoader implements LoaderInterface
      * @param  string  $sPath
      * @return void
      */
-    public function addPath($sPath)
+    public function fnAddPath($sPath)
     {
         $this->_aPaths[] = $sPath;
+    }
+
+    /**
+     * Get paths.
+     *
+     * @return array
+     */
+    public function fnGetPaths()
+    {
+        return $this->_aPaths;
+    }
+
+
+    public function fnGetLanguages()
+    {
+        $aLanguages = [];
+
+        foreach ($this->_aPaths as $sPath) {
+            $aFilesPaths = glob("{$sPath}/*");
+
+            foreach ($aFilesPaths as &$sFilePath) {
+                $aLanguages[basename($sFilePath)] = true;
+            }
+        }
+
+        return array_keys($aLanguages);
     }
 
     /**

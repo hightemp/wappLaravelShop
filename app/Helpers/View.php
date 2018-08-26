@@ -21,11 +21,25 @@ function fnAdminJSMix(...$aArguments)
 	return mix(...$aArguments);
 }
 
+function fnDefaultThemeView(...$aArguments)
+{
+	$aArguments[0] = "Frontend.Default." . $aArguments[0];
+	
+	return view(...$aArguments);
+}
+
 function fnThemeView(...$aArguments)
 {
 	$aArguments[0] = "Frontend.Default." . $aArguments[0];
 	
 	return view(...$aArguments);
+}
+
+function fnResponseDefaultThemeView(...$aArguments)
+{
+	$aArguments[0] = "Frontend.Default." . $aArguments[0];
+	
+	return response()->view(...$aArguments);
 }
 
 function fnResponseThemeView(...$aArguments)

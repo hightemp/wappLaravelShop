@@ -9,56 +9,75 @@ class Installator
 {
 	public static function fnIsInstalled()
 	{
-		return file_exists(fnPath(base_path(), "installed"));
+		if (request()->is("install")) {
+			return false;
+		}
+
+		$oFileSystem = app()['files'];
+		
+		return $oFileSystem->exists(fnBasePath("config/local.json"));
 	}
 
-	public static function fnInstall()
+	public static function fnInstall($aParameters)
 	{
-		unlink(fnPath(base_path(), "installed"));
+		$oFileSystem = app()['files'];
 
-		$oPDO = self::fnGetPDOConnection();
-		$oPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$oFileSystem->delete(fnBasePath("config/local.json"));
 
-		$sConnectionType = config("database.default");
-		$sDatabaseName = config("database.connections.$sConnectionType.database");
+		if (mb_strlen($aParameters["sAdminDir"])<10)
+			throw new \Exception("admin_dir_min_length", 90000);
 
-		$oPDO->exec("DROP DATABASE IF EXISTS `$sDatabaseName`;");
-		$oPDO->exec(sprintf(
-			"CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET '%s' COLLATE '%s';",
-			$sDatabaseName,
-			'utf8',
-			'utf8_unicode_ci'
-		));
+		if (!preg_match("/[a-zA-Z0-9]+/", $aParameters["sAdminDir"]))
+			throw new \Exception("admin_dir_characters", 90001);
 
-		Artisan::call('migrate');
+		if (mb_strlen($aParameters["sSuperAdministratorLogin"])<6)
+			throw new \Exception("admin_login_min_length", 90002);
 
-		self::fnComplete();
-	}
+		if (!preg_match("/[a-zA-Z0-9@]+/", $aParameters["sSuperAdministratorLogin"]))
+			throw new \Exception("admin_login_characters", 90003);
 
-	public static function fnGetPDOConnection()
-	{
-		static $oPDO = null;
+		if (mb_strlen($aParameters["sSuperAdministratorPassword"])<8)
+			throw new \Exception("admin_password_min_length", 90004);
 
-		if ($oPDO)
-			return $oPDO;
-
-		$sConnectionType = config("database.default");
+		$sConnectionType = $aParameters["sDatabaseDriver"];
 
 		$oPDO = new PDO(
 			sprintf(
-				'mysql:host=%s;port=%d;', 
-				config("database.connections.$sConnectionType.host"), 
-				config("database.connections.$sConnectionType.port")
+				'%s:host=%s;port=%d;', 
+				$aParameters["sDatabaseDriver"],
+				$aParameters["sDatabaseHost"], 
+				$aParameters["sDatabasePort"]
 			), 
-			config("database.connections.$sConnectionType.username"),
-			config("database.connections.$sConnectionType.password")
+			$aParameters["sDatabaseUserName"],
+			$aParameters["sDatabasePassword"]
 		);
 
-		return $oPDO;
-	}
+		$oPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	public static function fnComplete()
-	{
-		file_put_contents(fnPath(base_path(), "installed"), "");
+		$sDatabaseName = $aParameters["sDatabaseName"];
+
+		if (isset($aParameters['bDatabaseCreate']) && $aParameters['bDatabaseCreate']) {
+			$oPDO->exec("DROP DATABASE IF EXISTS `$sDatabaseName`;");
+			$oPDO->exec(sprintf(
+				"CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET '%s' COLLATE '%s';",
+				$sDatabaseName,
+				'utf8',
+				'utf8_unicode_ci'
+			));
+		}
+
+		$oDBS = $oPDO->query("SHOW DATABASES;");
+
+		$aDatabases = $oDBS->fetchAll();
+		$aDatabases = array_map(function($aItem) { return $aItem['Database']; }, $aDatabases);
+
+		if (!in_array($sDatabaseName, $aDatabases))
+			throw new \Exception("database_doesnt_exist", 90005);
+
+		$oPDO->exec("USE `$sDatabaseName`;");
+
+		//Artisan::call('migrate');
+
+		$oFileSystem->put(fnBasePath("config/local.json"), json_encode($aParameters, JSON_PRETTY_PRINT));
 	}
 }

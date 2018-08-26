@@ -22,10 +22,6 @@ class PreprocessorServiceProvider extends ServiceProvider
   
   public function boot()
   {
-    if (!Installator::fnIsInstalled()) {
-      return;
-    }
-    
     $this->oFileSystem = app()->files;
     
     $sCachePath = config("cache.stores.file.path");
@@ -44,7 +40,8 @@ class PreprocessorServiceProvider extends ServiceProvider
     $this->oFileSystem->makeDirectory($sCSSAdminPath, 0755, false, true);
     $this->oFileSystem->makeDirectory($sJSAdminPath, 0755, false, true);
     
-    $aFiles = [];
+    $aStylesFilesMTime = [];
+    $aScriptsFilesMTime = [];
     $aStylesFiles = [];
     $aScriptsFiles = [];
     $aMainStylesFiles = [];
@@ -54,8 +51,8 @@ class PreprocessorServiceProvider extends ServiceProvider
     $aThemeScriptsFiles = [];
     $aAdminScriptsFiles = [];
 
-    $aThemesNames = ThemesManager::fnGetAllNames();
-    $aModulesNames = ModulesManager::fnGetAllNames();
+    $aThemesNames = Installator::fnIsInstalled() ? ThemesManager::fnGetAllNames() : ["Default"];
+    $aModulesNames = Installator::fnIsInstalled() ? ModulesManager::fnGetAllNames() : [];
     
     $sStyleFilePath = fnBasePath("resources", "assets", "sass", "styles.scss");
     $sStyleCacheFilePath = fnPath($sCachePath, "styles_main.css");
@@ -63,7 +60,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       $aMainStylesFiles[] = $sStyleCacheFilePath;
       $aAdminStylesFiles[] = $sStyleCacheFilePath;
       $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-      $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+      $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
     }
 
     foreach ($aThemesNames as $sThemeName) {
@@ -78,7 +75,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sStyleFilePath)) {
         $aThemesStylesFiles[$sThemeName][] = $sStyleCacheFilePath;
         $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-        $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+        $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
       }
     }
 
@@ -87,7 +84,7 @@ class PreprocessorServiceProvider extends ServiceProvider
     if ($this->oFileSystem->exists($sStyleFilePath)) {
       $aAdminStylesFiles[] = $sStyleCacheFilePath;
       $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-      $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+      $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
     }
 
     foreach ($aModulesNames as $sModuleName) {
@@ -97,7 +94,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sStyleFilePath)) {
         $aMainStylesFiles[] = $sStyleCacheFilePath;
         $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-        $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+        $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
       }
 
       foreach ($aThemesNames as $sThemeName) {
@@ -107,7 +104,7 @@ class PreprocessorServiceProvider extends ServiceProvider
         if ($this->oFileSystem->exists($sStyleFilePath)) {
           $aThemesStylesFiles[$sThemeName][] = $sStyleCacheFilePath;
           $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-          $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+          $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
         }
         
       }
@@ -117,7 +114,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sStyleFilePath)) {
         $aAdminStylesFiles[] = $sStyleCacheFilePath;
         $aStylesFiles[$sStyleFilePath] = $sStyleCacheFilePath;
-        $aFiles[$sStyleFilePath] = filemtime($sStyleFilePath);
+        $aStylesFilesMTime[$sStyleFilePath] = filemtime($sStyleFilePath);
       }      
     }
     
@@ -127,7 +124,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       $aMainScriptsFiles[] = $sScriptCacheFilePath;
       $aAdminScriptsFiles[] = $sScriptCacheFilePath;
       $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-      $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+      $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
     }
 
     foreach ($aThemesNames as $sThemeName) {
@@ -142,7 +139,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sScriptFilePath)) {
         $aThemesScriptsFiles[$sThemeName][] = $sScriptCacheFilePath;
         $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-        $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+        $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
       }
     }
 
@@ -151,7 +148,7 @@ class PreprocessorServiceProvider extends ServiceProvider
     if ($this->oFileSystem->exists($sScriptFilePath)) {
       $aAdminScriptsFiles[] = $sScriptCacheFilePath;
       $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-      $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+      $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
     }
 
     foreach ($aModulesNames as $sModuleName) {
@@ -161,7 +158,7 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sScriptFilePath)) {
         $aMainScriptsFiles[] = $sScriptCacheFilePath;
         $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-        $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+        $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
       }
 
       foreach ($aThemesNames as $sThemeName) {
@@ -171,7 +168,7 @@ class PreprocessorServiceProvider extends ServiceProvider
         if ($this->oFileSystem->exists($sScriptFilePath)) {
           $aThemesScriptsFiles[$sThemeName][] = $sScriptCacheFilePath;
           $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-          $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+          $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
         }
         
       }
@@ -181,40 +178,49 @@ class PreprocessorServiceProvider extends ServiceProvider
       if ($this->oFileSystem->exists($sScriptFilePath)) {
         $aAdminScriptsFiles[] = $sScriptCacheFilePath;
         $aScriptsFiles[$sScriptFilePath] = $sScriptCacheFilePath;
-        $aFiles[$sScriptFilePath] = filemtime($sScriptFilePath);
+        $aScriptsFilesMTime[$sScriptFilePath] = filemtime($sScriptFilePath);
       }      
     }
     
-    if (Cache::has("preprocessor.files")) {
-      $aCachedFiles = Cache::get("preprocessor.files");
-      
-      $aDiffResult = array_diff_assoc($aFiles, $aCachedFiles);
-      
-      var_dump($aDiffResult);
-      
-      if (empty($aDiffResult)) {
-        return;
+    $sKey = "preprocessor.css_files";
+    $aCachedFiles = Cache::has($sKey) ? Cache::get($sKey) : [];
+    
+    $aDiffResult = array_diff_assoc($aStylesFilesMTime, $aCachedFiles);
+    
+    if (!empty($aDiffResult)) {
+      set_time_limit(0);
+
+      $this->fnCompileSCSS($aStylesFiles);
+
+      $this->fnCombine($aMainStylesFiles, fnPublicPath("css", "styles.css"));
+      foreach ($aThemesNames as $sThemeName) {
+        $this->fnCombine($aThemesStylesFiles[$sThemeName], fnPublicPath("css", $sThemeName, "styles.css"));
       }
+      $this->fnCombine($aAdminStylesFiles, fnPublicPath("css", "Admin", "styles.css"));
+
+      Cache::put("preprocessor.css_files", $aStylesFilesMTime, 60*24*30);
     }
     
-    $this->fnCompileSCSS($aStylesFiles);
 
-    $this->fnCombine($aMainStylesFiles, fnPublicPath("css", "styles.css"));
-    foreach ($aThemesNames as $sThemeName) {
-      $this->fnCombine($aThemesStylesFiles[$sThemeName], fnPublicPath("css", $sThemeName, "styles.css"));
+    $sKey = "preprocessor.js_files";
+    $aCachedFiles = Cache::has($sKey) ? Cache::get($sKey) : [];
+    
+    $aDiffResult = array_diff_assoc($aScriptsFilesMTime, $aCachedFiles);
+    
+    if (!empty($aDiffResult)) {
+      set_time_limit(0);
+      
+      $this->fnRequireJS($aScriptsFiles);
+      $this->fnMinifyJS($aScriptsFiles);
+
+      $this->fnCombine($aMainScriptsFiles, fnPublicPath("js", "scripts.js"), true);
+      foreach ($aThemesNames as $sThemeName) {
+        $this->fnCombine($aThemesScriptsFiles[$sThemeName], fnPublicPath("js", $sThemeName, "scripts.js"), true);
+      }
+      $this->fnCombine($aAdminScriptsFiles, fnPublicPath("js", "Admin", "scripts.js"), true);
+
+      Cache::put("preprocessor.js_files", $aScriptsFilesMTime, 60*24*30);
     }
-    $this->fnCombine($aAdminStylesFiles, fnPublicPath("css", "Admin", "styles.css"));
-
-    $this->fnRequireJS($aScriptsFiles);
-    $this->fnMinifyJS($aScriptsFiles);
-
-    $this->fnCombine($aMainScriptsFiles, fnPublicPath("js", "scripts.js"), true);
-    foreach ($aThemesNames as $sThemeName) {
-      $this->fnCombine($aThemesScriptsFiles[$sThemeName], fnPublicPath("js", $sThemeName, "scripts.js"), true);
-    }
-    $this->fnCombine($aAdminScriptsFiles, fnPublicPath("js", "Admin", "scripts.js"), true);
-
-    Cache::put("preprocessor.files", $aFiles, 60*24*30);
   }
 
   public function fnCompileSCSS($aFiles)

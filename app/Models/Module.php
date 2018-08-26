@@ -39,7 +39,7 @@ class Module extends Model
 		$sModuleTranslationsPath = fnAppPath("Modules", $this->sName, "Language", "Module");
 
 		$oTranslationLoader = app()->make('translation.loader');
-		$oTranslationLoader->addPath($sGlobalTranslationsPath);
+		$oTranslationLoader->fnAddPath($sGlobalTranslationsPath);
 		$oTranslationLoader->addNamespace($this->sName, $sModuleTranslationsPath);
 	}
 

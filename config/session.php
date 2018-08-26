@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    'driver' => fnLocalConfigGet('sSessionDriver', 'file'),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'table' => 'sessions',
+    'table' => 'Sessions',
 
     /*
     |--------------------------------------------------------------------------
@@ -122,7 +122,7 @@ return [
     |
     */
 
-    'cookie' => 'laravel_session',
+    'cookie' => 'session',
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +148,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => fnLocalConfigGet('sSessionDomain', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -161,7 +161,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', false),
+    'secure' => fnLocalConfigGet('sSessionSecureCookie', false),
 
     /*
     |--------------------------------------------------------------------------

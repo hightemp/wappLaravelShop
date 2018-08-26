@@ -11,7 +11,39 @@
 |
 */
 
+use App\Common\Installation\Installator;
+
 $sAdminDir = config('app.sAdminDir');
+
+Route::any(
+  '/install_complete', 
+  function () 
+  {
+    if (request()->session()->get('bIsInstalled', false)) {
+      return App::call('App\Http\Controllers\Frontend\InstallController@callAction', ['fnInstallComplete', []]);
+    }
+  }
+);
+
+Route::any(
+  '/install', 
+  function () 
+  {
+    if (!Installator::fnIsInstalled()) {
+      return App::call('App\Http\Controllers\Frontend\InstallController@callAction', ['fnIndex', []]);
+    }
+  }
+);
+
+if (!Installator::fnIsInstalled()) {
+  Route::any(
+    '{all}', 
+    function () 
+    {
+      return redirect('/install');
+    }
+  )->where('all', '.*');
+}
 
 /*
 Route::group([
@@ -72,10 +104,20 @@ Route::group(
 
 Route::get('/', 'Frontend\HomeController@fnShow');
 
+/*
 Route::any(
   '{all}', 
   function()
   {
-    return fnThemeView('error');
+    return fnResponseThemeView(          
+      "error", 
+      [
+          'oException' => new ,
+          'iStatus' => $iStatus
+      ], 
+      $iStatus, 
+      $aHeaders
+    );
   }
 )->where('all', '.*');
+*/

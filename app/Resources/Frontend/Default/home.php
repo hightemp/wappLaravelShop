@@ -1,5 +1,8 @@
 
-<?php echo __('test') ?><br>
-<?php echo __('test2') ?><br>
-<?php echo __('Test::test') ?><br>
-<?php echo __('test_module') ?><br>
+<div class="row">
+  <div class="col-12">
+
+  	<h1><?php echo __("home_page") ?></h1>
+
+  </div>
+</div>
