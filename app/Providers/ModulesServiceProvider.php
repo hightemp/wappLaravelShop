@@ -15,8 +15,6 @@ class ModulesServiceProvider extends ServiceProvider
       return;
     }
 
-    return;
-    
     $aModules = ModulesManager::fnGetAll();
 
     foreach($aModules as $oModule) {

@@ -10,7 +10,7 @@ return [
 	'database' => 'Database',
 	'password' => 'Password',
 	'database_driver_type' => 'Database driver',
-	'database_create' => 'Create database if not exists',
+	'database_create' => 'Create database',
 	'database_name' => 'Database name',
 	'database_host' => 'Host',
 	'database_port' => 'Port',

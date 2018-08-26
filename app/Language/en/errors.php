@@ -12,7 +12,7 @@ return [
 	'exception_2002' => 'Can\'t access to database server with such host name',
 	'exception_3D000' => 'Can\'t access to database',
 	'exception_90005' => 'Database doesn\'t exist',
-	'exception_' => '',
-	'exception_' => '',
+	'exception_1049' => 'Database doesn\'t exist',
+	'exception_42000' => 'Incorrect database name',
 
 ];

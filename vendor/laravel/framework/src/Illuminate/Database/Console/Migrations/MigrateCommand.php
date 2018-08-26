@@ -92,7 +92,7 @@ class MigrateCommand extends BaseCommand
     protected function prepareDatabase()
     {
         $this->migrator->setConnection($this->option('database'));
-
+        
         if (! $this->migrator->repositoryExists()) {
             $this->call(
                 'migrate:install', ['--database' => $this->option('database')]

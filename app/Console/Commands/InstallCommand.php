@@ -6,14 +6,15 @@ use Illuminate\Console\Command;
 use App\Common\Installation\Installator;
 use Exception;
 
-class DatabaseInstallCommand extends Command
+class InstallCommand extends Command
 {
-    protected $description = 'Database installation';
-    protected $signature = 'db:install';
+    protected $description = 'Installation';
+    protected $signature = 'ls:install';
 
     public function handle()
     {
         try {
+
             Installator::fnInstall();
 
         } catch (Exception $oException) {

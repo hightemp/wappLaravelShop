@@ -12,6 +12,7 @@
 */
 
 use App\Common\Installation\Installator;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $sAdminDir = config('app.sAdminDir');
 
@@ -21,6 +22,8 @@ Route::any(
   {
     if (request()->session()->get('bIsInstalled', false)) {
       return App::call('App\Http\Controllers\Frontend\InstallController@callAction', ['fnInstallComplete', []]);
+    } else {
+      throw new NotFoundHttpException();
     }
   }
 );
@@ -31,6 +34,8 @@ Route::any(
   {
     if (!Installator::fnIsInstalled()) {
       return App::call('App\Http\Controllers\Frontend\InstallController@callAction', ['fnIndex', []]);
+    } else {
+      throw new NotFoundHttpException();
     }
   }
 );

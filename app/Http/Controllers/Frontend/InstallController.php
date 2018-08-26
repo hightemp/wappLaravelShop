@@ -31,11 +31,14 @@ class InstallController extends BaseController
 		if (request()->method() == 'POST') {
 			try {
 				$aParameters = request()->all();
+				$aParameters['sLanguage'] = request()->input('sLanguage', 'en');
 
 				unset($aParameters['_token']);
 				
 				Installator::fnInstall($aParameters);
 			} catch(\Exception $oException) {
+				Installator::fnDeleteLocalConfig();
+
 				echo $oException->getMessage();
 				$aErrors[] = $oException->getCode();
 			}
