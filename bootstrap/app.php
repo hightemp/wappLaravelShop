@@ -37,8 +37,8 @@ $app->singleton(
 );
 
 $app->singleton(
-    App\Resources\Kernel::class,
-    App\Resources\Kernel::class
+    App\Widgets\Kernel::class,
+    App\Widgets\Kernel::class
 );
 
 $app->singleton(
