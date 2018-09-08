@@ -88,4 +88,14 @@ return [
 
     'prefix' => 'laravel',
 
+    'aCachePeriods' => [
+        'aPreprocessing' => [
+            'iStylesFilesTime' => MONTH,
+            'iScriptsFilesTime' => MONTH,
+        ],
+        'aModulesManager' => [
+            'iModulesTime' => MONTH,
+            'iInstalledModulesNamesTime' => MONTH,
+        ],
+    ]
 ];

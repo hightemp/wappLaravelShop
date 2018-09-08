@@ -182,7 +182,7 @@ class Preprocessor
       }      
     }
     
-    $sKey = "preprocessor.css_files";
+    $sKey = "Preprocessor.aStylesFiles";
     $aCachedFiles = Cache::has($sKey) ? Cache::get($sKey) : [];
     
     $aDiffResult = array_diff_assoc($aStylesFilesMTime, $aCachedFiles);
@@ -198,10 +198,10 @@ class Preprocessor
       }
       $this->fnCombine($aAdminStylesFiles, fnPublicPath("css", "Admin", "styles.css"));
 
-      Cache::put("preprocessor.css_files", $aStylesFilesMTime, config("preprocessing.cache.css"));
+      Cache::put($sKey, $aStylesFilesMTime, config("cache.aCachePeriods.aPreprocessing.iStylesFilesTime"));
     }
 
-    $sKey = "preprocessor.js_files";
+    $sKey = "Preprocessor.aScriptsFiles";
     $aCachedFiles = Cache::has($sKey) ? Cache::get($sKey) : [];
     
     $aDiffResult = array_diff_assoc($aScriptsFilesMTime, $aCachedFiles);
@@ -218,7 +218,7 @@ class Preprocessor
       }
       $this->fnCombine($aAdminScriptsFiles, fnPublicPath("js", "Admin", "scripts.js"), true);
 
-      Cache::put("preprocessor.js_files", $aScriptsFilesMTime, config("preprocessing.cache.js"));
+      Cache::put($sKey, $aScriptsFilesMTime, config("cache.aCachePeriods.aPreprocessing.iScriptsFilesTime"));
     }
 
     return [

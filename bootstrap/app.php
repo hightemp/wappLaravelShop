@@ -37,11 +37,6 @@ $app->singleton(
 );
 
 $app->singleton(
-    App\Widgets\Kernel::class,
-    App\Widgets\Kernel::class
-);
-
-$app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );

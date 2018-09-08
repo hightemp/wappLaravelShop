@@ -1,15 +1,11 @@
 <?php
 
 return [
-	'cache' => [
-		'js'  => MONTH,
-		'css' => MONTH,
-	],
-	'priority' => [
-		'js' => [
+	'aPriority' => [
+		'aScripts' => [
 			'' => 0,
 		],
-		'css' => [
+		'aStyles' => [
 			'' => 0,
 		]
 	]

@@ -3,26 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Managers\ModulesManager;
-use App\Core\Installation\Installator;
+use App\Core\Module\ModulesManager;
 
 class ModulesServiceProvider extends ServiceProvider
 {
+  public function register()
+  {
+    $this->app->singleton('modules.manager', function ($oApp) {
+      return new ModulesManager(
+      	$oApp['files']
+      );
+    });
+  }
 
   public function boot()
   {
-    if (!Installator::fnIsInstalled()) {
-      return;
-    }
-
-    $aModules = ModulesManager::fnGetAll();
-
-    foreach($aModules as $oModule) {
-      $oModule->fnLoadRoutes();
-      $oModule->fnLoadViews();
-      $oModule->fnLoadTranslations();
-      $oModule->fnLoadMigrations();
-    }
+    $this->app->make('modules.manager');
   }
 
 }

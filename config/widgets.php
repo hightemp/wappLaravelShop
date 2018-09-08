@@ -3,7 +3,7 @@
 return [
 
 	'aWidgets' => [
-
+		'TextBox',
 	],
 	
 ];
