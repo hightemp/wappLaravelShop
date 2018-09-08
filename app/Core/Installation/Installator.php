@@ -29,7 +29,7 @@ class Installator
 		if (mb_strlen($aParameters["sSuperAdministratorLogin"])<6)
 			throw new \Exception("admin_login_min_length", 90002);
 
-		if (!preg_match("/[a-zA-Z0-9@]+/", $aParameters["sSuperAdministratorLogin"]))
+		if (!preg_match("/[a-zA-Z0-9@._-]+/", $aParameters["sSuperAdministratorLogin"]))
 			throw new \Exception("admin_login_characters", 90003);
 
 		if (mb_strlen($aParameters["sSuperAdministratorPassword"])<8)
