@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Managers\ModulesManager;
-use App\Common\Installation\Installator;
+use App\Core\Installation\Installator;
 
 class ModulesServiceProvider extends ServiceProvider
 {

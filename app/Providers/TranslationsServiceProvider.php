@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Common\Translation\FileLoader;
+use App\Core\Translation\FileLoader;
 use Illuminate\Translation\Translator;
 
 class TranslationsServiceProvider extends ServiceProvider

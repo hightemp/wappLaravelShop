@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Cache;
-use App\Common\Installation\Installator;
+use App\Core\Installation\Installator;
 use App\Models\Module;
 use App\Managers\ModulesManager;
 use App\Managers\ThemesManager;

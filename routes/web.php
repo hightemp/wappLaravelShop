@@ -11,7 +11,7 @@
 |
 */
 
-use App\Common\Installation\Installator;
+use App\Core\Installation\Installator;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $sAdminDir = config('app.sAdminDir');

@@ -19,9 +19,9 @@ class CreateAllTables extends Migration
         {
           $oTable->increments('iSettingID');
           $oTable->string('sName', 255);
-          $oTable->string('sType', 20);
+          $oTable->string('sType', 255);
           $oTable->string('sValue', 255);
-          $oTable->charset = 'utf8';
+          $oTable->charset = 'utf8mb4';
           $oTable->collation = 'utf8_unicode_ci';
           $oTable->engine = 'InnoDB';
         }
@@ -33,7 +33,7 @@ class CreateAllTables extends Migration
           $oTable->increments('iModuleID');
           $oTable->string('sName', 255);
           $oTable->boolean('bStatus');
-          $oTable->charset = 'utf8';
+          $oTable->charset = 'utf8mb4';
           $oTable->collation = 'utf8_unicode_ci';
           $oTable->engine = 'InnoDB';
         }
@@ -49,7 +49,7 @@ class CreateAllTables extends Migration
               ->default(0);
           $oTable->string('sName', 255);
           $oTable->boolean('bStatus');
-          $oTable->charset = 'utf8';
+          $oTable->charset = 'utf8mb4';
           $oTable->collation = 'utf8_unicode_ci';
           $oTable->engine = 'InnoDB';
         }

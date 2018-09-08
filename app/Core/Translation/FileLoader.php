@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Common\Translation;
+namespace App\Core\Translation;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Translation\LoaderInterface;

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Routing\Controller as BaseController;
-use App\Common\Installation\Installator;
+use App\Core\Installation\Installator;
 
 class InstallController extends BaseController
 {

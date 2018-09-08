@@ -10,7 +10,7 @@ return [
 	'database' => 'База данных',
 	'password' => 'Пароль',
 	'database_driver_type' => 'Драйвер',
-	'database_create' => 'Создать базу',
+	'database_create' => 'Создать базу?',
 	'database_name' => 'Имя базы данных',
 	'database_host' => 'Хост',
 	'database_port' => 'Порт',

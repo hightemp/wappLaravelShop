@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Common\Installation;
+namespace App\Core\Installation;
 
 use Artisan;
 use PDO;
@@ -60,9 +60,9 @@ class Installator
 			if (isset($aParameters['bDatabaseCreate']) && $aParameters['bDatabaseCreate']) {
 				$oPDO->exec("DROP DATABASE IF EXISTS `$sDatabaseName`;");
 				$oPDO->exec(sprintf(
-					"CREATE DATABASE IF NOT EXISTS `%s` CHARACTER SET '%s' COLLATE '%s';",
+					"CREATE DATABASE `%s` CHARACTER SET '%s' COLLATE '%s';",
 					$sDatabaseName,
-					'utf8',
+					'utf8mb4',
 					'utf8_unicode_ci'
 				));
 			}

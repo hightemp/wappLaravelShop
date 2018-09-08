@@ -1,5 +1,5 @@
 <?php
-	use App\Common\Utils\StringUtils;
+	use App\Core\Utils\StringUtils;
 
 	$sColumn1Classes = "col-sm-5 col-form-label text-right";
 	$sColumn1TitleClasses = "col-sm-5 text-right";
